@@ -46,9 +46,29 @@ vim.opt.ignorecase = true   -- ignore uppercase letters when executing search
 vim.opt.incsearch = true    -- highlight pattern matches while typing search
 vim.opt.smartcase = true    -- make search ignore uppercase letters unless the search term has uppercase
 
+-- Whitespace and indentation
+vim.opt.autoindent = true             -- copy indent from current line when starting a new line
+vim.opt.breakindent = true            -- preserve indentation of virtual lines
+vim.opt.expandtab = true              -- converts tabs to white space
+vim.opt.list = false                  -- show whitespace characters
+vim.opt.listchars = 'space:·,tab:-→'  -- characters to use for whitespace
+vim.opt.shiftwidth = 2                -- width for autoindent
+vim.opt.smartindent = true            -- do smart autoindent when starting a new line
+vim.opt.softtabstop = 2               -- number of spaces that a <Tab> counts for
+vim.opt.tabstop = 2                   -- number of columns occupied by a tab
+vim.opt.wrap = true                   -- wrap long lines
+
 -----------------------------------------------------------
 -- Key mappings
 -----------------------------------------------------------
+
+local function map(mode, lhs, rhs, opts)
+  local options = { noremap=true, silent=true }
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
 -- Disable arrow keys
 map('', '<up>', '<nop>')
