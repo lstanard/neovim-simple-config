@@ -2,6 +2,15 @@
 -- Simple, barebones neovim config
 -----------------------------------------------------------
 
+-- remap leader key to space key (must be set before plugins are loaded)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+vim.opt.termguicolors = true
+
+-----------------------------------------------------------
+-- Plugins
+-----------------------------------------------------------
+
 -- Init lazy.nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -14,15 +23,43 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
------------------------------------------------------------
--- Plugins
------------------------------------------------------------
+require('lazy').setup({
+  -- catppuccin color scheme
+  { 
+    'catppuccin/nvim', 
+    name = 'catppuccin', 
+    priority = 1000
+  },
+  -- Toggle comments
+  {
+    'numToStr/Comment.nvim',
+    lazy = false,
+    config = function() require('Comment').setup() end,
+  },
+  -- Show marks in sign column
+  {
+    'chentoast/marks.nvim',
+    config = function() require('marks').setup() end,
+  },
+  -- Syntax parser
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function () 
+      local configs = require("nvim-treesitter.configs")
 
-require('lazy').setup(
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
-)
+      configs.setup({
+        ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html" },
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },  
+      })
+    end
+  }
+})
 
 -----------------------------------------------------------
 -- Configuration settings
@@ -34,7 +71,10 @@ require('lazy').setup(
 vim.cmd.colorscheme('catppuccin-macchiato')
 
 -- General options
+vim.opt.cursorline = true       -- highlight current cursorline
+vim.opt.errorbells = false      -- disable bell sound for error messages
 vim.opt.number = true           -- always show line numbers
+vim.opt.relativenumber = true   -- use relative line numbers
 vim.opt.scrolloff = 3           -- minimum number of screen lines to keep above and below the cursor
 vim.opt.showmatch = true        -- highlight matching brackets
 vim.opt.signcolumn = 'yes'      -- always show the sign column
@@ -90,3 +130,5 @@ map('n', '<leader>qq', ':qa!<cr>')
 map('n', '<leader>w', ':w<cr>')
 -- Write all buffers
 map('n', '<leader>ww', ':wa<cr>')
+-- Toggle show whitespace
+map('n', '<leader>ws', ':set list!<cr>')
