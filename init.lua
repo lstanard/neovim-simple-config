@@ -44,6 +44,10 @@ require('lazy').setup({
     'chentoast/marks.nvim',
     config = function() require('marks').setup() end,
   },
+  -- Pairs of handy bracket mappings
+  {
+    'tpope/vim-unimpaired',
+  },
   -- Syntax parser
   {
     "nvim-treesitter/nvim-treesitter",
