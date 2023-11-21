@@ -33,6 +33,10 @@ require('lazy').setup({
     name = 'catppuccin', 
     priority = 1000
   },
+  -- Icons (for Telescope and other plugins)
+  {
+    'nvim-tree/nvim-web-devicons',
+  },
   -- Toggle comments
   {
     'numToStr/Comment.nvim',
@@ -47,6 +51,12 @@ require('lazy').setup({
   -- Pairs of handy bracket mappings
   {
     'tpope/vim-unimpaired',
+  },
+  -- Telescope (and extensions)
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.4',
+    dependencies = { 'nvim-lua/plenary.nvim' },
   },
   -- Syntax parser
   {
@@ -136,3 +146,11 @@ map('n', '<leader>w', ':w<cr>')
 map('n', '<leader>ww', ':wa<cr>')
 -- Toggle show whitespace
 map('n', '<leader>ws', ':set list!<cr>')
+
+-----------------------------------------------------------
+-- Plugin key mappings
+-----------------------------------------------------------
+
+map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
+map('n', '<leader>fg', '<cmd>:Telescope live_grep<cr>')
+map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
