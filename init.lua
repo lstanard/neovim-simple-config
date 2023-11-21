@@ -176,4 +176,7 @@ map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
 map('n', '<leader>gf', '<cmd>:Telescope git_files<cr>')
 
 -- gitsigns
+map('n', '<leader>hs', '<cmd>:Gitsigns stage_hunk<cr>')
+map('n', '<leader>hr', '<cmd>:Gitsigns reset_hunk<cr>')
+map('n', '<leader>hp', '<cmd>:Gitsigns preview_hunk<cr>')
 map('n', '<leader>tb', '<cmd>:Gitsigns toggle_current_line_blame<cr>')
