@@ -48,6 +48,11 @@ require('lazy').setup({
     'chentoast/marks.nvim',
     config = function() require('marks').setup() end,
   },
+  -- Git indicators in the sign column
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function() require('gitsigns').setup() end,
+  },
   -- Pairs of handy bracket mappings
   {
     'tpope/vim-unimpaired',
