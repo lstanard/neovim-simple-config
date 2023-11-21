@@ -72,7 +72,7 @@ require('lazy').setup({
 
 -- Color scheme
 -- Additional configuration options https://github.com/catppuccin/nvim
-vim.cmd.colorscheme('catppuccin-macchiato')
+vim.cmd.colorscheme('catppuccin-frappe')
 
 -- General options
 vim.opt.cursorline = true       -- highlight current cursorline
