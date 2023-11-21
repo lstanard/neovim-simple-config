@@ -43,6 +43,15 @@ require('lazy').setup({
     lazy = false,
     config = function() require('Comment').setup() end,
   },
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    config = function() require('which-key').setup({}) end,
+  },
   -- Show marks in sign column
   {
     'chentoast/marks.nvim',
@@ -146,21 +155,25 @@ map('n', '<C-k>', '<C-w>k', {desc = 'Focus window up'})
 map('n', '<C-l>', '<C-w>l', {desc = 'Focus window right'})
 
 -- Map 'esc' to kk
-map('i', 'kk', '<Esc>')
+map('i', 'kk', '<Esc>', {desc = 'Escape'})
 -- Quit
-map('n', '<leader>qq', ':qa!<cr>')
+map('n', '<leader>qq', ':qa!<cr>', {desc = 'Quit'})
 -- Write buffer
-map('n', '<leader>w', ':w<cr>')
+map('n', '<leader>w', ':w<cr>', {desc = 'Write buffer'})
 -- Write all buffers
-map('n', '<leader>ww', ':wa<cr>')
+map('n', '<leader>ww', ':wa<cr>', {desc = 'Write all buffers'})
 -- Toggle show whitespace
-map('n', '<leader>ws', ':set list!<cr>')
+map('n', '<leader>ws', ':set list!<cr>', {desc = 'Toggle show whitespace'})
 
 -----------------------------------------------------------
 -- Plugin key mappings
 -----------------------------------------------------------
 
+-- Telescope
 map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
 map('n', '<leader>fg', '<cmd>:Telescope live_grep<cr>')
 map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
 map('n', '<leader>gf', '<cmd>:Telescope git_files<cr>')
+
+-- gitsigns
+map('n', '<leader>tb', '<cmd>:Gitsigns toggle_current_line_blame<cr>')
