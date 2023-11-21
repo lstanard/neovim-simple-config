@@ -58,6 +58,10 @@ require('lazy').setup({
     tag = '0.1.4',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
+  -- GitHub Copilot
+  {
+    'github/copilot.vim'
+  },
   -- Syntax parser
   {
     "nvim-treesitter/nvim-treesitter",
