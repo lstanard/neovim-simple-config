@@ -120,6 +120,10 @@ require('lazy').setup({
     tag = '0.1.4',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+  },
   -- GitHub Copilot
   {
     'github/copilot.vim'
@@ -138,8 +142,15 @@ require('lazy').setup({
         indent = { enable = true },  
       })
     end
-  }
+  },
+  -- Better quickfix window
+  -- NOTE: Haven't used this yet, but adding here so I don't forget about it
+  {
+    'kevinhwang91/nvim-bqf'
+  },
 })
+
+require('telescope').load_extension('file_browser')
 
 -----------------------------------------------------------
 -- Configuration settings
@@ -222,6 +233,7 @@ map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
 map('n', '<leader>fg', '<cmd>:Telescope live_grep<cr>')
 map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
 map('n', '<leader>gf', '<cmd>:Telescope git_files<cr>')
+map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>')
 
 -- gitsigns
 map('n', '<leader>hs', '<cmd>:Gitsigns stage_hunk<cr>')
