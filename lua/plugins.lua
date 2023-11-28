@@ -20,9 +20,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- catppuccin color scheme
-  { 
-    'catppuccin/nvim', 
-    name = 'catppuccin', 
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
     priority = 1000
   },
   -- Icons (for Telescope and other plugins)
@@ -34,6 +34,10 @@ require('lazy').setup({
     'numToStr/Comment.nvim',
     lazy = false,
     config = function() require('Comment').setup() end,
+  },
+  -- Highlight and automatically remove trailing whitespace
+  {
+    'ntpeters/vim-better-whitespace',
   },
   -- Move lines and selections up/down/left/right
   {
@@ -124,14 +128,32 @@ require('lazy').setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function () 
+    config = function ()
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-        ensure_installed = { "lua", "vim", "vimdoc", "javascript", "html" },
+        ensure_installed = {
+          'lua',
+          'vim',
+          'python',
+          'jsdoc',
+          'javascript',
+          'typescript',
+          'css',
+          'scss',
+          'tsx',
+          'json',
+          'yaml',
+          'html',
+          'graphql',
+          'markdown',
+          'markdown_inline',
+        },
         sync_install = false,
+        auto_install = true,
         highlight = { enable = true },
-        indent = { enable = true },  
+        indent = { enable = true },
+        incremental_selection = { enable = true },
       })
     end
   },
@@ -140,6 +162,93 @@ require('lazy').setup({
   {
     'kevinhwang91/nvim-bqf'
   },
+  -- LSP and auto-complete
+  'neovim/nvim-lspconfig',                -- Configurations for the neovim LSP client
+  'williamboman/mason.nvim',              -- Package manager for Neovim LSPs (and linters)
+  'williamboman/mason-lspconfig.nvim',    -- Mason extension for better integration with nvim-lspconfig
+  'folke/neodev.nvim',                    -- Neovim setup for lua development
+  {                                       -- Pretty diagnostics
+    'folke/trouble.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('trouble').setup()
+    end,
+  },
+  {                                       -- LSP loading status indicator
+    'j-hui/fidget.nvim',
+    tag = 'legacy',
+    config = function()
+      require('fidget').setup({})
+    end,
+  },
 })
 
 require('telescope').load_extension('file_browser')
+
+-----------------------------------------------------------
+-- LSP Config
+-----------------------------------------------------------
+
+------------------------------------------
+-- Configure Plugin: mason
+---------------------------------------
+
+local servers = {
+  pyright= {},
+  eslint = {},
+  tsserver = {},
+  graphql = {},
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+}
+
+-- Setup neovim lua configuration
+require('neodev').setup()
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Setup mason so it can manage external tooling
+require('mason').setup()
+
+-- Ensure the servers above are installed
+local mason_lspconfig = require 'mason-lspconfig'
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
+  automatic_installation = true,
+}
+
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      -- on_attach = on_attach,
+      settings = servers[server_name],
+    }
+  end,
+}
+
+------------------------------------------
+-- Misc
+---------------------------------------
+
+-- Icons in sign column for diagnostics
+local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Information = " "
+}
+
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+end

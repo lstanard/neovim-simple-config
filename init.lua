@@ -50,6 +50,10 @@ vim.opt.softtabstop = 2               -- number of spaces that a <Tab> counts fo
 vim.opt.tabstop = 2                   -- number of columns occupied by a tab
 vim.opt.wrap = true                   -- wrap long lines
 
+-- Whitespace fixing
+vim.g.better_whitespace_enabled = 1
+vim.g.strip_whitespace_on_save = 1
+
 -----------------------------------------------------------
 -- Key mappings
 -----------------------------------------------------------
