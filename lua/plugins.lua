@@ -39,6 +39,13 @@ require('lazy').setup({
   {
     'ntpeters/vim-better-whitespace',
   },
+  -- Show indentation guide lines
+  {
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+    config = function () require('ibl').setup() end,
+	},
   -- Move lines and selections up/down/left/right
   {
     'echasnovski/mini.move',
@@ -154,6 +161,8 @@ require('lazy').setup({
         highlight = { enable = true },
         indent = { enable = true },
         incremental_selection = { enable = true },
+        ignore_install = {},
+        modules = {},
       })
     end
   },
