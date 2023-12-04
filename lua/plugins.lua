@@ -97,6 +97,13 @@ require('lazy').setup({
       })
     end,
   },
+  -- Floating notification messages
+  {
+    'rcarriga/nvim-notify',
+    config = function()
+      vim.notify = require('notify')
+    end,
+  },
   -- Display popup with possible keybindings
   {
     'folke/which-key.nvim',
