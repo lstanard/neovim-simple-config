@@ -19,7 +19,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- catppuccin color scheme
+  -- Catppuccin color scheme
   {
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -228,10 +228,6 @@ require('telescope').load_extension('file_browser')
 -- LSP Config
 -----------------------------------------------------------
 
-------------------------------------------
--- Configure Plugin: mason
----------------------------------------
-
 local servers = {
   pyright= {},
   eslint = {},
@@ -272,20 +268,3 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-
-------------------------------------------
--- Misc
----------------------------------------
-
--- Icons in sign column for diagnostics
-local signs = {
-    Error = " ",
-    Warn = " ",
-    Hint = " ",
-    Information = " "
-}
-
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
-end

@@ -54,6 +54,23 @@ vim.opt.wrap = true                   -- wrap long lines
 vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
 
+------------------------------------------
+-- Misc configuration
+---------------------------------------
+
+-- Icons in sign column for diagnostics
+local signs = {
+  Error = " ",
+  Warn = " ",
+  Hint = " ",
+  Information = " "
+}
+
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+end
+
 -----------------------------------------------------------
 -- Key mappings
 -----------------------------------------------------------
