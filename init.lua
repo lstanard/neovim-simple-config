@@ -60,10 +60,10 @@ vim.g.strip_whitespace_on_save = 1
 
 -- Icons in sign column for diagnostics
 local signs = {
-  Error = " ",
-  Warn = " ",
-  Hint = " ",
-  Information = " "
+  Error = "",
+  Warn = "",
+  Hint = "󰆈",
+  Information = "󰋼"
 }
 
 for type, icon in pairs(signs) do
