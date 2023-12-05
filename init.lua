@@ -71,6 +71,20 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 end
 
+-- Command to toggle inline diagnostics
+vim.api.nvim_create_user_command(
+  'DiagnosticsToggleVirtualText',
+  function()
+    local current_value = vim.diagnostic.config().virtual_text
+    if current_value then
+      vim.diagnostic.config({virtual_text = false})
+    else
+      vim.diagnostic.config({virtual_text = true})
+    end
+  end,
+  {}
+)
+
 -----------------------------------------------------------
 -- Key mappings
 -----------------------------------------------------------
@@ -111,6 +125,8 @@ map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 map('n', '<leader>ws', ':set list!<cr>', {desc = 'Toggle show whitespace'})
 -- Toggle search highlight
 map('n', '<leader>hl', ':set hlsearch! hlsearch?<cr>')
+-- Toggle inline diagnostics messages
+map('n', '<leader>dh', ':DiagnosticsToggleVirtualText<cr>', {desc = 'Toggle inline diagnostics'})
 
 -----------------------------------------------------------
 -- Plugin key mappings
