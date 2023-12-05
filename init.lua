@@ -129,7 +129,7 @@ map('n', '<leader>hl', ':set hlsearch! hlsearch?<cr>')
 map('n', '<leader>dh', ':DiagnosticsToggleVirtualText<cr>', {desc = 'Toggle inline diagnostics'})
 
 -----------------------------------------------------------
--- Plugin key mappings
+-- Key mappings: Plugins
 -----------------------------------------------------------
 
 -- Telescope
