@@ -158,3 +158,6 @@ map('n', 'gD', '<cmd>TroubleToggle lsp_definitions<cr>')
 
 -- LazyGit
 map('n', 'Lg', '<cmd>LazyGit<cr>')
+
+-- indent-blankline
+map('n', '<leader>it', '<cmd>IBLToggle<cr>')
