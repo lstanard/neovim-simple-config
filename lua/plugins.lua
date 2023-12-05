@@ -97,6 +97,19 @@ require('lazy').setup({
       })
     end,
   },
+  -- Tabline
+  {
+    'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      auto_hide = true
+    },
+    version = '^1.0.0',
+  },
   -- Floating notification messages
   {
     'rcarriga/nvim-notify',
@@ -118,6 +131,10 @@ require('lazy').setup({
   {
     'chentoast/marks.nvim',
     config = function() require('marks').setup() end,
+  },
+  -- Open lazygit from within neovim
+  {
+    'kdheepak/lazygit.nvim'
   },
   -- Git indicators in the sign column
   {
