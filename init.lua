@@ -103,8 +103,14 @@ map('n', '<leader>qq', ':qa!<cr>', {desc = 'Quit'})
 map('n', '<leader>w', ':w<cr>', {desc = 'Write buffer'})
 -- Write all buffers
 map('n', '<leader>ww', ':wa<cr>', {desc = 'Write all buffers'})
+-- Close (destroy) buffer
+map('n', '<leader>bd', ':bd<cr>')
+-- Select all text in current buffer
+map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 -- Toggle show whitespace
 map('n', '<leader>ws', ':set list!<cr>', {desc = 'Toggle show whitespace'})
+-- Toggle search highlight
+map('n', '<leader>hl', ':set hlsearch! hlsearch?<cr>')
 
 -----------------------------------------------------------
 -- Plugin key mappings
