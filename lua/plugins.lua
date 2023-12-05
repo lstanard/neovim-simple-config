@@ -41,10 +41,10 @@ require('lazy').setup({
   },
   -- Show indentation guide lines
   {
-		'lukas-reineke/indent-blankline.nvim',
-		main = 'ibl',
-		opts = {},
-    config = function ()
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    opts = {},
+    config = function()
       local highlight = {
         "RainbowRed",
         "RainbowYellow",
@@ -72,7 +72,7 @@ require('lazy').setup({
 
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     end,
-	},
+  },
   -- Move lines and selections up/down/left/right
   {
     'echasnovski/mini.move',
@@ -84,15 +84,15 @@ require('lazy').setup({
           -- see https://stackoverflow.com/a/5382863/1183876.
 
           -- Move visual selection in Visual mode
-          left = '˙',     -- <Alt-h>
-          right = '¬',    -- <Alt-l>
-          down = '∆',     -- <Alt-j>
-          up = '˚',       -- <Alt-k>
+          left = '˙', -- <Alt-h>
+          right = '¬', -- <Alt-l>
+          down = '∆', -- <Alt-j>
+          up = '˚', -- <Alt-k>
           -- Move current line in Normal mode
-          line_left = '˙',  -- <Alt-h>
+          line_left = '˙', -- <Alt-h>
           line_right = '¬', -- <Alt-l>
-          line_down = '∆',  -- <Alt-j>
-          line_up = '˚',    -- <Alt-k>
+          line_down = '∆', -- <Alt-j>
+          line_up = '˚', -- <Alt-k>
         },
       })
     end,
@@ -139,30 +139,32 @@ require('lazy').setup({
   -- Git indicators in the sign column
   {
     'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns').setup({
-      on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
+    config = function()
+      require('gitsigns').setup({
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
 
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
 
-        -- Navigation
-        map('n', ']c', function()
-          if vim.wo.diff then return ']c' end
-          vim.schedule(function() gs.next_hunk() end)
-          return '<Ignore>'
-        end, {expr=true})
+          -- Navigation
+          map('n', ']c', function()
+            if vim.wo.diff then return ']c' end
+            vim.schedule(function() gs.next_hunk() end)
+            return '<Ignore>'
+          end, { expr = true })
 
-        map('n', '[c', function()
-          if vim.wo.diff then return '[c' end
-          vim.schedule(function() gs.prev_hunk() end)
-          return '<Ignore>'
-        end, {expr=true})
-      end,
-    }) end,
+          map('n', '[c', function()
+            if vim.wo.diff then return '[c' end
+            vim.schedule(function() gs.prev_hunk() end)
+            return '<Ignore>'
+          end, { expr = true })
+        end,
+      })
+    end,
   },
   -- Pairs of handy bracket mappings
   {
@@ -186,7 +188,7 @@ require('lazy').setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function ()
+    config = function()
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
@@ -233,11 +235,11 @@ require('lazy').setup({
     end,
   },
   -- LSP and auto-complete
-  'neovim/nvim-lspconfig',                -- Configurations for the neovim LSP client
-  'williamboman/mason.nvim',              -- Package manager for Neovim LSPs (and linters)
-  'williamboman/mason-lspconfig.nvim',    -- Mason extension for better integration with nvim-lspconfig
-  'folke/neodev.nvim',                    -- Neovim setup for lua development
-  {                                       -- LSP loading status indicator
+  'neovim/nvim-lspconfig',             -- Configurations for the neovim LSP client
+  'williamboman/mason.nvim',           -- Package manager for Neovim LSPs (and linters)
+  'williamboman/mason-lspconfig.nvim', -- Mason extension for better integration with nvim-lspconfig
+  'folke/neodev.nvim',                 -- Neovim setup for lua development
+  {                                    -- LSP loading status indicator
     'j-hui/fidget.nvim',
     tag = 'legacy',
     config = function()
@@ -253,7 +255,7 @@ require('telescope').load_extension('file_browser')
 -----------------------------------------------------------
 
 local servers = {
-  pyright= {},
+  pyright = {},
   eslint = {},
   tsserver = {},
   graphql = {},
