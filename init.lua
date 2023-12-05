@@ -122,6 +122,7 @@ map('n', '<leader>hs', '<cmd>:Gitsigns stage_hunk<cr>')
 map('n', '<leader>hr', '<cmd>:Gitsigns reset_hunk<cr>')
 map('n', '<leader>hp', '<cmd>:Gitsigns preview_hunk<cr>')
 map('n', '<leader>tb', '<cmd>:Gitsigns toggle_current_line_blame<cr>')
+map('n', '<leader>bl', '<cmd>:Gitsigns blame_line<cr>')
 
 -- Trouble
 map('n', '<leader>xx', '<cmd>TroubleToggle<cr>')
@@ -132,3 +133,6 @@ map('n', '<leader>xq', '<cmd>TroubleToggle quickfix<cr>')
 map('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>')
 map('n', 'gY', '<cmd>TroubleToggle lsp_type_definitions<cr>')
 map('n', 'gD', '<cmd>TroubleToggle lsp_definitions<cr>')
+
+-- LazyGit
+map('n', 'Lg', '<cmd>LazyGit<cr>')
