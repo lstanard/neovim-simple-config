@@ -23,32 +23,32 @@ require('plugins')
 vim.cmd.colorscheme('catppuccin-frappe')
 
 -- General options
-vim.opt.cursorline = true       -- highlight current cursorline
-vim.opt.errorbells = false      -- disable bell sound for error messages
-vim.opt.number = true           -- always show line numbers
-vim.opt.relativenumber = true   -- use relative line numbers
-vim.opt.scrolloff = 3           -- minimum number of screen lines to keep above and below the cursor
-vim.opt.showmatch = true        -- highlight matching brackets
-vim.opt.signcolumn = 'yes'      -- always show the sign column
-vim.opt.syntax = 'on'           -- enable syntax highlighting
+vim.opt.cursorline = true     -- highlight current cursorline
+vim.opt.errorbells = false    -- disable bell sound for error messages
+vim.opt.number = true         -- always show line numbers
+vim.opt.relativenumber = true -- use relative line numbers
+vim.opt.scrolloff = 3         -- minimum number of screen lines to keep above and below the cursor
+vim.opt.showmatch = true      -- highlight matching brackets
+vim.opt.signcolumn = 'yes'    -- always show the sign column
+vim.opt.syntax = 'on'         -- enable syntax highlighting
 
 -- Search options
-vim.opt.hlsearch = false    -- highlight results of previous search
-vim.opt.ignorecase = true   -- ignore uppercase letters when executing search
-vim.opt.incsearch = true    -- highlight pattern matches while typing search
-vim.opt.smartcase = true    -- make search ignore uppercase letters unless the search term has uppercase
+vim.opt.hlsearch = false  -- highlight results of previous search
+vim.opt.ignorecase = true -- ignore uppercase letters when executing search
+vim.opt.incsearch = true  -- highlight pattern matches while typing search
+vim.opt.smartcase = true  -- make search ignore uppercase letters unless the search term has uppercase
 
 -- Whitespace and indentation
-vim.opt.autoindent = true             -- copy indent from current line when starting a new line
-vim.opt.breakindent = true            -- preserve indentation of virtual lines
-vim.opt.expandtab = true              -- converts tabs to white space
-vim.opt.list = false                  -- show whitespace characters
-vim.opt.listchars = 'space:·,tab:-→'  -- characters to use for whitespace
-vim.opt.shiftwidth = 2                -- width for autoindent
-vim.opt.smartindent = true            -- do smart autoindent when starting a new line
-vim.opt.softtabstop = 2               -- number of spaces that a <Tab> counts for
-vim.opt.tabstop = 2                   -- number of columns occupied by a tab
-vim.opt.wrap = true                   -- wrap long lines
+vim.opt.autoindent = true -- copy indent from current line when starting a new line
+vim.opt.breakindent = true -- preserve indentation of virtual lines
+vim.opt.expandtab = true -- converts tabs to white space
+vim.opt.list = false -- show whitespace characters
+vim.opt.listchars = 'space:·,tab:-→' -- characters to use for whitespace
+vim.opt.shiftwidth = 2 -- width for autoindent
+vim.opt.smartindent = true -- do smart autoindent when starting a new line
+vim.opt.softtabstop = 2 -- number of spaces that a <Tab> counts for
+vim.opt.tabstop = 2 -- number of columns occupied by a tab
+vim.opt.wrap = true -- wrap long lines
 
 -- Whitespace fixing
 vim.g.better_whitespace_enabled = 1
@@ -68,7 +68,7 @@ local signs = {
 
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 -- Command to toggle inline diagnostics
@@ -77,20 +77,27 @@ vim.api.nvim_create_user_command(
   function()
     local current_value = vim.diagnostic.config().virtual_text
     if current_value then
-      vim.diagnostic.config({virtual_text = false})
+      vim.diagnostic.config({ virtual_text = false })
     else
-      vim.diagnostic.config({virtual_text = true})
+      vim.diagnostic.config({ virtual_text = true })
     end
   end,
   {}
 )
+
+-- Automatically format on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  callback = function()
+    vim.lsp.buf.format { async = false }
+  end
+})
 
 -----------------------------------------------------------
 -- Key mappings
 -----------------------------------------------------------
 
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap=true, silent=true }
+  local options = { noremap = true, silent = true }
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
@@ -104,29 +111,29 @@ map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
 -- Move around splits using Ctrl + {h,j,k,l}
-map('n', '<C-h>', '<C-w>h', {desc = 'Focus window left'})
-map('n', '<C-j>', '<C-w>j', {desc = 'Focus window down'})
-map('n', '<C-k>', '<C-w>k', {desc = 'Focus window up'})
-map('n', '<C-l>', '<C-w>l', {desc = 'Focus window right'})
+map('n', '<C-h>', '<C-w>h', { desc = 'Focus window left' })
+map('n', '<C-j>', '<C-w>j', { desc = 'Focus window down' })
+map('n', '<C-k>', '<C-w>k', { desc = 'Focus window up' })
+map('n', '<C-l>', '<C-w>l', { desc = 'Focus window right' })
 
 -- Map 'esc' to kk
-map('i', 'kk', '<Esc>', {desc = 'Escape'})
+map('i', 'kk', '<Esc>', { desc = 'Escape' })
 -- Quit
-map('n', '<leader>qq', ':qa!<cr>', {desc = 'Quit'})
+map('n', '<leader>qq', ':qa!<cr>', { desc = 'Quit' })
 -- Write buffer
-map('n', '<leader>w', ':w<cr>', {desc = 'Write buffer'})
+map('n', '<leader>w', ':w<cr>', { desc = 'Write buffer' })
 -- Write all buffers
-map('n', '<leader>ww', ':wa<cr>', {desc = 'Write all buffers'})
+map('n', '<leader>ww', ':wa<cr>', { desc = 'Write all buffers' })
 -- Close (destroy) buffer
 map('n', '<leader>bd', ':bd<cr>')
 -- Select all text in current buffer
 map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 -- Toggle show whitespace
-map('n', '<leader>ws', ':set list!<cr>', {desc = 'Toggle show whitespace'})
+map('n', '<leader>ws', ':set list!<cr>', { desc = 'Toggle show whitespace' })
 -- Toggle search highlight
 map('n', '<leader>hl', ':set hlsearch! hlsearch?<cr>')
 -- Toggle inline diagnostics messages
-map('n', '<leader>dh', ':DiagnosticsToggleVirtualText<cr>', {desc = 'Toggle inline diagnostics'})
+map('n', '<leader>dh', ':DiagnosticsToggleVirtualText<cr>', { desc = 'Toggle inline diagnostics' })
 
 -----------------------------------------------------------
 -- Key mappings: Plugins
