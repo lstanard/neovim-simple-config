@@ -35,6 +35,10 @@ require('lazy').setup({
     lazy = false,
     config = function() require('Comment').setup() end,
   },
+  -- Delete buffers and close files without closing windows
+  {
+    'moll/vim-bbye'
+  },
   -- Highlight and automatically remove trailing whitespace
   {
     'ntpeters/vim-better-whitespace',
