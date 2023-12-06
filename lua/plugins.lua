@@ -170,6 +170,11 @@ require('lazy').setup({
   {
     'tpope/vim-unimpaired',
   },
+  -- Improve default neovim interfaces
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
   -- Telescope (and extensions)
   {
     'nvim-telescope/telescope.nvim',
