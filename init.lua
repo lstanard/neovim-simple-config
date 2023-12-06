@@ -33,7 +33,7 @@ vim.opt.signcolumn = 'yes'    -- always show the sign column
 vim.opt.syntax = 'on'         -- enable syntax highlighting
 
 -- Search options
-vim.opt.hlsearch = false  -- highlight results of previous search
+vim.opt.hlsearch = true   -- highlight results of previous search
 vim.opt.ignorecase = true -- ignore uppercase letters when executing search
 vim.opt.incsearch = true  -- highlight pattern matches while typing search
 vim.opt.smartcase = true  -- make search ignore uppercase letters unless the search term has uppercase
@@ -43,12 +43,12 @@ vim.opt.autoindent = true -- copy indent from current line when starting a new l
 vim.opt.breakindent = true -- preserve indentation of virtual lines
 vim.opt.expandtab = true -- converts tabs to white space
 vim.opt.list = false -- show whitespace characters
+vim.opt.listchars = 'space:·,tab: →' -- characters to use for whitespace
 vim.opt.shiftwidth = 2 -- width for autoindent
 vim.opt.smartindent = true -- do smart autoindent when starting a new line
 vim.opt.softtabstop = 2 -- number of spaces that a <Tab> counts for
 vim.opt.tabstop = 2 -- number of columns occupied by a tab
 vim.opt.wrap = true -- wrap long lines
-vim.opt.listchars = 'space:·,tab: →' -- characters to use for whitespace
 
 -- Whitespace fixing
 vim.g.better_whitespace_enabled = 1
