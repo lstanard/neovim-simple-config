@@ -35,6 +35,12 @@ require('lazy').setup({
     lazy = false,
     config = function() require('Comment').setup() end,
   },
+  -- Highlight TODO comments
+  {
+    'folke/todo-comments.nvim',
+      config = function() require('todo-comments').setup()
+    end,
+  },
   -- Delete buffers and close files without closing windows
   {
     'moll/vim-bbye'
