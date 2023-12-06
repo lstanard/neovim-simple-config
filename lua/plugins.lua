@@ -43,7 +43,6 @@ require('lazy').setup({
   {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
-    opts = {},
     config = function()
       local highlight = {
         "RainbowRed",
@@ -68,7 +67,9 @@ require('lazy').setup({
       end)
 
       vim.g.rainbow_delimiters = { highlight = highlight }
-      require("ibl").setup { scope = { highlight = highlight } }
+      require("ibl").setup {
+        scope = { highlight = highlight },
+      }
 
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     end,
@@ -171,6 +172,7 @@ require('lazy').setup({
     'tpope/vim-unimpaired',
   },
   -- Improve default neovim interfaces
+  -- NOTE: Could also use https://github.com/nvim-telescope/telescope-ui-select.nvim
   {
     'stevearc/dressing.nvim',
     opts = {},
@@ -221,6 +223,9 @@ require('lazy').setup({
         incremental_selection = { enable = true },
         ignore_install = {},
         modules = {},
+        autotag = {
+          enable = true,
+        },
       })
     end
   },
@@ -239,7 +244,16 @@ require('lazy').setup({
       require('trouble').setup()
     end,
   },
-  -- LSP and auto-complete
+  -- Automatically close and rename HTML tags
+  {
+    'windwp/nvim-ts-autotag',
+  },
+  -- Auto pair brackets and such
+  {
+    'windwp/nvim-autopairs',
+    config = function() require('nvim-autopairs').setup({}) end,
+  },
+  -- LSP
   'neovim/nvim-lspconfig',             -- Configurations for the neovim LSP client
   'williamboman/mason.nvim',           -- Package manager for Neovim LSPs (and linters)
   'williamboman/mason-lspconfig.nvim', -- Mason extension for better integration with nvim-lspconfig
