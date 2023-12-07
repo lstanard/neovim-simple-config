@@ -35,11 +35,17 @@ require('lazy').setup({
     lazy = false,
     config = function() require('Comment').setup() end,
   },
+  -- Edit filesystem
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function() require('oil').setup() end,
+  },
   -- Highlight TODO comments
   {
     'folke/todo-comments.nvim',
-      config = function() require('todo-comments').setup()
-    end,
+    config = function() require('todo-comments').setup() end,
   },
   -- Delete buffers and close files without closing windows
   {
