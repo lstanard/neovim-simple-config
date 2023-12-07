@@ -85,6 +85,16 @@ vim.api.nvim_create_user_command(
   {}
 )
 
+-- Prevent opening file in insert mode
+-- HACK: This is a fix for a bug with Telescope + nvim-cmp that causes files to open in insert mode
+vim.api.nvim_create_autocmd('WinLeave', {
+  callback = function()
+    if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
+    end
+  end,
+})
+
 -- NOTE: Disabling for now, causing some weird issues
 -- Automatically format on save
 -- vim.api.nvim_create_autocmd('BufWritePre', {
@@ -148,6 +158,7 @@ map('n', '<leader>gf', '<cmd>:Telescope git_files<cr>')
 map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>')
 
 -- gitsigns
+map('n', '<leader>gs', '<cmd>:Gitsigns<cr>')
 map('n', '<leader>hs', '<cmd>:Gitsigns stage_hunk<cr>')
 map('n', '<leader>hr', '<cmd>:Gitsigns reset_hunk<cr>')
 map('n', '<leader>hp', '<cmd>:Gitsigns preview_hunk<cr>')

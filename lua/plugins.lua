@@ -260,7 +260,6 @@ require('lazy').setup({
     end
   },
   -- Better quickfix window
-  -- NOTE: Haven't used this yet, but adding here so I don't forget about it
   {
     'kevinhwang91/nvim-bqf'
   },
@@ -410,6 +409,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -----------------------------------------------------------
 -- LSP Config: nvim-cmp
 -----------------------------------------------------------
+
+-- BUG: The issue with Telescope opening files in insert mode is coming
+-- from this nvim-cmp config somewhere. If I comment this out the issue
+-- goes away.
 
 local status, cmp = pcall(require, 'cmp')
 local luasnip = require('luasnip')
