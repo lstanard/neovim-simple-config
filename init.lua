@@ -181,8 +181,5 @@ map('n', 'Lg', '<cmd>LazyGit<cr>')
 -- indent-blankline
 map('n', '<leader>it', '<cmd>IBLToggle<cr>')
 
--- vim-bbye
-map('n', '<leader>q', '<cmd>Bdelete<cr>')
-
 -- Oil
 map('n', '<leader>o', '<cmd>Oil<cr>')

@@ -45,11 +45,13 @@ require('lazy').setup({
   -- Highlight TODO comments
   {
     'folke/todo-comments.nvim',
-    config = function() require('todo-comments').setup() end,
-  },
-  -- Delete buffers and close files without closing windows
-  {
-    'moll/vim-bbye'
+    config = function() require('todo-comments').setup({
+      keywords = {
+        TODO = {icon = '', color = 'info'},
+        NOTE = {icon = '󰏫', color = 'hint'},
+      },
+      colors = {},
+    }) end,
   },
   -- Highlight and automatically remove trailing whitespace
   {
