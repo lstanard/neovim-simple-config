@@ -57,6 +57,11 @@ require('lazy').setup({
   {
     'ntpeters/vim-better-whitespace',
   },
+  -- Code folding
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+  },
   -- Show indentation guide lines
   {
     'lukas-reineke/indent-blankline.nvim',
@@ -194,7 +199,6 @@ require('lazy').setup({
     'tpope/vim-unimpaired',
   },
   -- Improve default neovim interfaces
-  -- NOTE: Could also use https://github.com/nvim-telescope/telescope-ui-select.nvim
   {
     'stevearc/dressing.nvim',
     opts = {},
@@ -485,3 +489,33 @@ require('lspconfig')['tsserver'].setup {
 vim.cmd [[
   highlight! default link CmpItemKind CmpItemMenuDefault
 ]]
+
+-----------------------------------------------------------
+-- UFO (code folding)
+-----------------------------------------------------------
+
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+-- Tell the server the capability of foldingRange,
+-- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+local ufo_capabilities = vim.lsp.protocol.make_client_capabilities()
+ufo_capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+for _, ls in ipairs(language_servers) do
+    require('lspconfig')[ls].setup({
+        capabilities = capabilities
+        -- you can add other fields for setting up lsp server in this table
+    })
+end
+require('ufo').setup()
