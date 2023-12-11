@@ -145,6 +145,8 @@ map('n', '<leader>ws', ':set list!<cr>', { desc = 'Toggle show whitespace' })
 map('n', '<leader>hl', ':set hlsearch! hlsearch?<cr>')
 -- Toggle inline diagnostics messages
 map('n', '<leader>dh', ':DiagnosticsToggleVirtualText<cr>', { desc = 'Toggle inline diagnostics' })
+-- Toggle relative/absolute line numbers
+map('n', '<leader>ln', ':set relativenumber!<cr>', { desc = 'Toggle relative line numbers' })
 
 -----------------------------------------------------------
 -- Key mappings: Plugins
