@@ -154,7 +154,7 @@ map('n', '<leader>ln', ':set relativenumber!<cr>', { desc = 'Toggle relative lin
 
 -- Telescope
 map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
-map('n', '<leader>fg', '<cmd>:Telescope live_grep<cr>')
+map('n', '<leader>fg', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>')
 map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
 map('n', '<leader>gf', '<cmd>:Telescope git_files<cr>')
 map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>')
