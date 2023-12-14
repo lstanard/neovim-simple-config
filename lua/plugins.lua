@@ -62,6 +62,10 @@ require('lazy').setup({
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
   },
+  -- Generate and insert UUIDs
+  {
+    'kburdett/vim-nuuid'
+  },
   -- Show indentation guide lines
   {
     'lukas-reineke/indent-blankline.nvim',
