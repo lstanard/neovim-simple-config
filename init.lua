@@ -31,6 +31,7 @@ vim.opt.scrolloff = 3         -- minimum number of screen lines to keep above an
 vim.opt.showmatch = true      -- highlight matching brackets
 vim.opt.signcolumn = 'yes'    -- always show the sign column
 vim.opt.syntax = 'on'         -- enable syntax highlighting
+vim.opt.updatetime = 500      -- time in milliseconds to trigger CursorHold event
 
 -- Search options
 vim.opt.hlsearch = true   -- highlight results of previous search

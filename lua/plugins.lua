@@ -53,6 +53,17 @@ require('lazy').setup({
       colors = {},
     }) end,
   },
+  -- Highlight instances of word under cursor
+  {
+    'tzachar/local-highlight.nvim',
+    config = function()
+      require('local-highlight').setup({
+        hlgroup = 'Search',
+        -- file_types = {'python', 'markdown', 'javascript', 'typescript'},
+        disable_file_types = {},
+      })
+    end
+  },
   -- Highlight and automatically remove trailing whitespace
   {
     'ntpeters/vim-better-whitespace',
