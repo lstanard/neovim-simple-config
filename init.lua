@@ -186,3 +186,6 @@ map('n', '<leader>it', '<cmd>IBLToggle<cr>')
 
 -- Oil
 map('n', '<leader>o', '<cmd>Oil<cr>')
+
+-- local-highlight
+map('n', '<leader>lh', '<cmd>:LocalHighlightToggle<cr>', { desc = 'Toggle local highlighting of word under cursor' })
