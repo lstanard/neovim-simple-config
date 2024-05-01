@@ -35,23 +35,43 @@ require('lazy').setup({
     lazy = false,
     config = function() require('Comment').setup() end,
   },
-  -- Edit filesystem
+  -- View and edit filesystem like a buffer
   {
     'stevearc/oil.nvim',
     opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function() require('oil').setup() end,
+    config = function()
+      require('oil').setup({
+        win_options = {
+          signcolumn = 'yes:2',
+        }
+      })
+    end,
+  },
+  -- Add git status to oil directory listings
+  {
+    'refractalize/oil-git-status.nvim',
+    dependencies = {
+      'stevearc/oil.nvim',
+    },
+    config = true,
+  },
+  -- Open links from markdown files
+  {
+    'jghauser/follow-md-links.nvim'
   },
   -- Highlight TODO comments
   {
     'folke/todo-comments.nvim',
-    config = function() require('todo-comments').setup({
-      keywords = {
-        TODO = {icon = '', color = 'info'},
-        NOTE = {icon = '󰏫', color = 'hint'},
-      },
-      colors = {},
-    }) end,
+    config = function()
+      require('todo-comments').setup({
+        keywords = {
+          TODO = { icon = '', color = 'info' },
+          NOTE = { icon = '󰏫', color = 'hint' },
+        },
+        colors = {},
+      })
+    end,
   },
   -- Highlight instances of word under cursor
   {
@@ -250,7 +270,7 @@ require('lazy').setup({
   -- Copilot for nvim-cmp
   {
     'zbirenbaum/copilot-cmp',
-    config = function ()
+    config = function()
       require('copilot_cmp').setup()
     end
   },
@@ -524,6 +544,7 @@ vim.cmd [[
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.o.foldcolumn = '1' -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
@@ -535,8 +556,8 @@ vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
 local ufo_capabilities = vim.lsp.protocol.make_client_capabilities()
 ufo_capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+  dynamicRegistration = false,
+  lineFoldingOnly = true
 }
 local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
 for _, ls in ipairs(language_servers) do
