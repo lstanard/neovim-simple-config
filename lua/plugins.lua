@@ -30,11 +30,11 @@ require('lazy').setup({
     'nvim-tree/nvim-web-devicons',
   },
   -- Toggle comments
-  {
-    'numToStr/Comment.nvim',
-    lazy = false,
-    config = function() require('Comment').setup() end,
-  },
+  -- {
+  --   'numToStr/Comment.nvim',
+  --   lazy = false,
+  --   config = function() require('Comment').setup() end,
+  -- },
   -- View and edit filesystem like a buffer
   {
     'stevearc/oil.nvim',
@@ -189,6 +189,10 @@ require('lazy').setup({
       vim.o.timeoutlen = 300
     end,
     config = function() require('which-key').setup({}) end,
+  },
+  -- Sticky scroll
+  {
+    'wellle/context.vim',
   },
   -- Show marks in sign column
   {
