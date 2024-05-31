@@ -29,12 +29,13 @@ require('lazy').setup({
   {
     'nvim-tree/nvim-web-devicons',
   },
-  -- Toggle comments
-  -- {
-  --   'numToStr/Comment.nvim',
-  --   lazy = false,
-  --   config = function() require('Comment').setup() end,
-  -- },
+  -- Improved support for native neovim comments
+  {
+    'folke/ts-comments.nvim',
+    opts = {},
+    event = 'VeryLazy',
+    enabled = vim.fn.has('nvim-0.10.0') == 1,
+  },
   -- View and edit filesystem like a buffer
   {
     'stevearc/oil.nvim',
