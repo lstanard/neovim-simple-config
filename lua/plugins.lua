@@ -191,10 +191,6 @@ require('lazy').setup({
     end,
     config = function() require('which-key').setup({}) end,
   },
-  -- Sticky scroll
-  {
-    'wellle/context.vim',
-  },
   -- Show marks in sign column
   {
     'chentoast/marks.nvim',
@@ -316,6 +312,13 @@ require('lazy').setup({
         },
       })
     end
+  },
+  -- Sticky scroll
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function()
+      require('treesitter-context').setup()
+    end,
   },
   -- Better quickfix window
   {
@@ -548,7 +551,6 @@ vim.cmd [[
 
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.o.foldcolumn = '1' -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
