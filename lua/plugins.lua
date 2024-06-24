@@ -378,9 +378,11 @@ require('telescope').load_extension('file_browser')
 
 local servers = {
   pyright = {},
+  ruff_lsp = {},
   eslint = {},
   tsserver = {},
   graphql = {},
+  ruby_lsp = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -428,6 +430,8 @@ mason_lspconfig.setup_handlers {
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
+lspconfig.ruff_lsp.setup {}
+lspconfig.ruby_lsp.setup {}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
