@@ -190,3 +190,12 @@ map('n', '<leader>o', '<cmd>Oil<cr>')
 
 -- local-highlight
 map('n', '<leader>lh', '<cmd>:LocalHighlightToggle<cr>', { desc = 'Toggle local highlighting of word under cursor' })
+
+-- nvim-hlslens
+map('n', 'n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<cr><Cmd>lua require('hlslens').start()<cr>]])
+map('n', 'N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]])
+map('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]])
+map('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]])
+map('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]])
+map('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]])
+map('n', '<Leader>l', '<Cmd>noh<CR>') -- might need to remap this, could mess with lh and ln commands

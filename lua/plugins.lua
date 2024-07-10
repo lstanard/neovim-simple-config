@@ -57,6 +57,20 @@ require('lazy').setup({
     },
     config = true,
   },
+  -- Improved hlsearch
+  {
+    'kevinhwang91/nvim-hlslens',
+    config = function()
+      require('hlslens').setup()
+    end,
+  },
+  -- Scrollbar with inline hints
+  {
+    'petertriho/nvim-scrollbar',
+    config = function()
+      require('scrollbar').setup()
+    end,
+  },
   -- Open links from markdown files
   {
     'jghauser/follow-md-links.nvim'
@@ -228,6 +242,7 @@ require('lazy').setup({
           end, { expr = true })
         end,
       })
+      require('scrollbar.handlers.gitsigns').setup()
     end,
   },
   -- Pairs of handy bracket mappings
