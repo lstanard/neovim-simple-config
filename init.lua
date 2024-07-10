@@ -159,6 +159,7 @@ map('n', '<leader>fg', ':lua require("telescope").extensions.live_grep_args.live
 map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
 map('n', '<leader>gf', '<cmd>:Telescope git_files<cr>')
 map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>')
+map('n', '<leader>fr', '<cmd>:Telescope resume<cr>')
 
 -- gitsigns
 map('n', '<leader>gs', '<cmd>:Gitsigns<cr>')
