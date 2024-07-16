@@ -74,6 +74,13 @@ require('lazy').setup({
       require('scrollbar').setup()
     end,
   },
+  -- Symbols outline
+  {
+    'simrat39/symbols-outline.nvim',
+    config = function()
+      require('symbols-outline').setup({})
+    end,
+  },
   -- Open links from markdown files
   {
     'jghauser/follow-md-links.nvim'

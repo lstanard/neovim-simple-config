@@ -199,3 +199,6 @@ map('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]])
 map('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]])
 map('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]])
 map('n', '<Leader>l', '<Cmd>noh<CR>') -- might need to remap this, could mess with lh and ln commands
+
+-- symbols-outline
+map('n', '<leader>so', '<cmd>SymbolsOutline<cr>')
