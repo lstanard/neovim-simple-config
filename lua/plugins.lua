@@ -78,7 +78,38 @@ require('lazy').setup({
   {
     'simrat39/symbols-outline.nvim',
     config = function()
-      require('symbols-outline').setup({})
+      require('symbols-outline').setup({
+        symbols = {
+          File = { icon = "", hl = "@text.uri" },
+          Module = { icon = "", hl = "@namespace" },
+          Namespace = { icon = "", hl = "@namespace" },
+          Package = { icon = "", hl = "@namespace" },
+          Class = { icon = "", hl = "@type" },
+          Method = { icon = "ƒ", hl = "@method" },
+          Property = { icon = "", hl = "@method" },
+          Field = { icon = "", hl = "@field" },
+          Constructor = { icon = "", hl = "@constructor" },
+          Enum = { icon = "", hl = "@type" },
+          Interface = { icon = "", hl = "@type" },
+          Function = { icon = "", hl = "@function" },
+          Variable = { icon = "", hl = "@constant" },
+          Constant = { icon = "", hl = "@constant" },
+          String = { icon = "", hl = "@string" },
+          Number = { icon = "#", hl = "@number" },
+          Boolean = { icon = "", hl = "@boolean" },
+          Array = { icon = "", hl = "@constant" },
+          Object = { icon = "", hl = "@type" },
+          Key = { icon = "", hl = "@type" },
+          Null = { icon = "", hl = "@type" },
+          EnumMember = { icon = "", hl = "@field" },
+          Struct = { icon = "", hl = "@type" },
+          Event = { icon = "", hl = "@type" },
+          Operator = { icon = "", hl = "@operator" },
+          TypeParameter = { icon = "", hl = "@parameter" },
+          Component = { icon = "", hl = "@function" },
+          Fragment = { icon = "", hl = "@constant" },
+        },
+      })
     end,
   },
   -- Open links from markdown files
@@ -211,6 +242,31 @@ require('lazy').setup({
     'rcarriga/nvim-notify',
     config = function()
       vim.notify = require('notify')
+    end,
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+        presets = {
+          bottom_search = true,   -- use a classic bottom cmdline for search
+          command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          lsp_doc_border = true, -- add a border to hover docs and signature help
+        },
+      })
     end,
   },
   -- Display popup with possible keybindings
