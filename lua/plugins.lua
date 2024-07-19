@@ -221,7 +221,16 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require('lualine').setup({})
+      require('lualine').setup({
+        sections = {
+          lualine_c = {
+            {
+              'filename',
+            path = 1  -- Show full filepath instead of just filename
+            }
+          },
+        },
+      })
     end,
   },
   -- Tabline
@@ -687,9 +696,9 @@ ufo_capabilities.textDocument.foldingRange = {
 }
 local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
 for _, ls in ipairs(language_servers) do
-    require('lspconfig')[ls].setup({
-        capabilities = capabilities
-        -- you can add other fields for setting up lsp server in this table
-    })
+  require('lspconfig')[ls].setup({
+    capabilities = capabilities
+    -- you can add other fields for setting up lsp server in this table
+  })
 end
 require('ufo').setup()
