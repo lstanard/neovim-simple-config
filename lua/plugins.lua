@@ -451,11 +451,9 @@ require('lazy').setup({
   -- Diagnostics tools
   {
     'folke/trouble.nvim',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
+    cmd = "Trouble",
     config = function()
-      require('trouble').setup()
+      require('trouble').setup({})
     end,
   },
   -- Automatically close and rename HTML tags

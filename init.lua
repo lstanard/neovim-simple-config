@@ -170,14 +170,20 @@ map('n', '<leader>tb', '<cmd>:Gitsigns toggle_current_line_blame<cr>')
 map('n', '<leader>bl', '<cmd>:Gitsigns blame_line<cr>')
 
 -- Trouble
-map('n', '<leader>xx', '<cmd>TroubleToggle<cr>')
-map('n', '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>')
-map('n', '<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>')
-map('n', '<leader>xl', '<cmd>TroubleToggle loclist<cr>')
-map('n', '<leader>xq', '<cmd>TroubleToggle quickfix<cr>')
-map('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>')
-map('n', 'gY', '<cmd>TroubleToggle lsp_type_definitions<cr>')
-map('n', 'gD', '<cmd>TroubleToggle lsp_definitions<cr>')
+map('n', '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', { desc = 'Diagnostics (Trouble)' })
+map('n', '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', { desc = 'Buffer Diagnostics (Trouble)' })
+map('n', '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', { desc = 'Symbols (Trouble)' })
+map('n', '<leader>cl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', { desc = 'LSP Definitions / references / ... (Trouble)' })
+map('n', '<leader>xL', '<cmd>Trouble loclist toggle<cr>', { desc = 'Location List (Trouble)' })
+map('n', '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', { desc = 'Quickfix List (Trouble)' })
+-- OLD Trouble key mappings
+-- map('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>')
+-- map('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>')
+-- map('n', '<leader>xl', '<cmd>Trouble loclist<cr>')
+-- map('n', '<leader>xq', '<cmd>Trouble quickfix<cr>')
+-- map('n', 'gR', '<cmd>Trouble lsp_references<cr>')
+-- map('n', 'gY', '<cmd>Trouble lsp_type_definitions<cr>')
+-- map('n', 'gD', '<cmd>Trouble lsp_definitions<cr>')
 
 -- LazyGit
 map('n', 'Lg', '<cmd>LazyGit<cr>')
