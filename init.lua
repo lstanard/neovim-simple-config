@@ -128,6 +128,12 @@ map('n', '<C-j>', '<C-w>j', { desc = 'Focus window down' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Focus window up' })
 map('n', '<C-l>', '<C-w>l', { desc = 'Focus window right' })
 
+-- Increase and decrease window size
+map('n', '=', ':vertical resize +5<cr>') -- make the window biger vertically
+map('n', '-', ':vertical resize -5<cr>') -- make the window smaller vertically
+map('n', '+', ':horizontal resize +2<cr>') -- make the window bigger horizontally by pressing shift and =
+map('n', '_', ':horizontal resize -2<cr>') -- make the window smaller horizontally by pressing shift and -
+
 -- Map 'esc' to kk
 map('i', 'kk', '<Esc>', { desc = 'Escape' })
 -- Quit
