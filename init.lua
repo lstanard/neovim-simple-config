@@ -144,6 +144,8 @@ map('n', '<leader>w', ':w<cr>', { desc = 'Write buffer' })
 map('n', '<leader>ww', ':wa<cr>', { desc = 'Write all buffers' })
 -- Close (destroy) buffer
 map('n', '<leader>bd', ':bd<cr>')
+-- Close buffer without closing the window
+map('n', '<leader>bc', ':bp<bar>sp<bar>bn<bar>bd<cr>', { desc = 'Close buffer without closing window' })
 -- Select all text in current buffer
 map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 -- Toggle show whitespace
