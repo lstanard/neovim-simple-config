@@ -505,6 +505,7 @@ local servers = {
   tsserver = {},
   graphql = {},
   ruby_lsp = {},
+  rubocop = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
