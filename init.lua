@@ -157,6 +157,9 @@ map('n', '<leader>dh', ':DiagnosticsToggleVirtualText<cr>', { desc = 'Toggle inl
 -- Toggle relative/absolute line numbers
 map('n', '<leader>ln', ':set relativenumber!<cr>', { desc = 'Toggle relative line numbers' })
 
+-- Terminal windows
+map('t', '<esc>', [[<C-\><C-n>]])
+
 -----------------------------------------------------------
 -- Key mappings: Plugins
 -----------------------------------------------------------

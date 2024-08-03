@@ -246,6 +246,28 @@ require('lazy').setup({
     },
     version = '^1.0.0',
   },
+  -- Manage terminal windows
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    config = function()
+      require('toggleterm').setup({
+        size = function(term)
+          if term.direction == "horizontal" then
+            return 15
+          elseif term.direction == "vertical" then
+            return vim.o.columns * 0.4
+          end
+        end,
+        open_mapping = [[<C-t>]],
+        hide_numbers = true,
+        insert_mappings = true,
+        direction = 'vertical',
+        close_on_exit = true,
+        shell = vim.o.shell,
+      })
+    end,
+  },
   -- Floating notification messages
   {
     'rcarriga/nvim-notify',
@@ -466,7 +488,10 @@ require('lazy').setup({
     config = function() require('nvim-autopairs').setup({}) end,
   },
   -- LSP
-  'neovim/nvim-lspconfig',             -- Configurations for the neovim LSP client
+  -- Configurations for the neovim LSP client
+  {
+    'neovim/nvim-lspconfig',
+  },
   'williamboman/mason.nvim',           -- Package manager for Neovim LSPs (and linters)
   'williamboman/mason-lspconfig.nvim', -- Mason extension for better integration with nvim-lspconfig
   'folke/neodev.nvim',                 -- Neovim setup for lua development
