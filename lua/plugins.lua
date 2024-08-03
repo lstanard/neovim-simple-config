@@ -226,7 +226,7 @@ require('lazy').setup({
           lualine_c = {
             {
               'filename',
-            path = 1  -- Show full filepath instead of just filename
+              path = 1 -- Show full filepath instead of just filename
             }
           },
         },
