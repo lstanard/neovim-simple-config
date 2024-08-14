@@ -385,6 +385,13 @@ require('lazy').setup({
     'stevearc/dressing.nvim',
     opts = {},
   },
+  -- Find and replace
+  {
+    'nvim-pack/nvim-spectre',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+  },
   -- Telescope (and extensions)
   {
     'nvim-telescope/telescope.nvim',
