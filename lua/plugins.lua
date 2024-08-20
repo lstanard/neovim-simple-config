@@ -52,6 +52,10 @@ require('lazy').setup({
       })
     end,
   },
+  -- Git integration
+  {
+    'tpope/vim-fugitive',
+  },
   -- Add git status to oil directory listings
   {
     'refractalize/oil-git-status.nvim',
