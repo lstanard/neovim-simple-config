@@ -225,6 +225,7 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
+      -- catppuccin frappe
       local colors = {
         blue   = '#8caaee',
         cyan   = '#81c8be',
@@ -233,16 +234,19 @@ require('lazy').setup({
         red    = '#e78284',
         violet = '#ca9ee6',
         grey   = '#626880',
+        orange = '#ef9f76',
+        green  = '#a6d189',
       }
 
       local bubbles_theme = {
         normal = {
-          a = { fg = colors.black, bg = colors.violet },
+          a = { fg = colors.black, bg = colors.blue },
           b = { fg = colors.white, bg = colors.grey },
           c = { fg = colors.white },
         },
-        insert = { a = { fg = colors.black, bg = colors.blue } },
+        insert = { a = { fg = colors.black, bg = colors.green } },
         visual = { a = { fg = colors.black, bg = colors.cyan } },
+        command = { a = { fg = colors.black, bg = colors.orange } },
         replace = { a = { fg = colors.black, bg = colors.red } },
         inactive = {
           a = { fg = colors.white, bg = colors.black },
