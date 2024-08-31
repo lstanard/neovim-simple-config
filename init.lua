@@ -160,6 +160,8 @@ map('n', '<leader>ln', ':set relativenumber!<cr>', { desc = 'Toggle relative lin
 -- Terminal windows
 map('t', '<esc>', [[<C-\><C-n>]])
 
+-- Custom scripts
+map('n', '<leader>sp', ':! yarn git-save<cr>', { desc = 'Stage all changes, commit, and push (custom script)' })
 -----------------------------------------------------------
 -- Key mappings: Plugins
 -----------------------------------------------------------
@@ -197,7 +199,7 @@ map('n', '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', { desc = 'Quickfix List
 -- map('n', 'gD', '<cmd>Trouble lsp_definitions<cr>')
 
 -- LazyGit
-map('n', 'Lg', '<cmd>LazyGit<cr>')
+-- map('n', 'Lg', '<cmd>LazyGit<cr>')
 
 -- indent-blankline
 map('n', '<leader>it', '<cmd>IBLToggle<cr>')
@@ -219,3 +221,7 @@ map('n', '<Leader>l', '<Cmd>noh<CR>') -- might need to remap this, could mess wi
 
 -- symbols-outline
 map('n', '<leader>so', '<cmd>SymbolsOutline<cr>')
+-- barbar
+-- https://github.com/romgrk/barbar.nvim?tab=readme-ov-file#lua
+map('n', 't', '<cmd>BufferPrevious<cr>')
+map('n', 'T', '<cmd>BufferNext<cr>')
