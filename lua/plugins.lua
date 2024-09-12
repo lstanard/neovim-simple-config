@@ -131,6 +131,14 @@ require('lazy').setup({
       })
     end,
   },
+  {
+    'kylechui/nvim-surround',
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({})
+    end
+  },
   -- Open links from markdown files
   {
     'jghauser/follow-md-links.nvim'
