@@ -71,6 +71,54 @@ require('lazy').setup({
   {
     'tpope/vim-fugitive',
   },
+  -- Open lazygit from within neovim
+  {
+    'kdheepak/lazygit.nvim',
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  },
+  -- Git indicators in the sign column
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup({
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
+
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          -- Navigation
+          map('n', ']c', function()
+            if vim.wo.diff then return ']c' end
+            vim.schedule(function() gs.next_hunk() end)
+            return '<Ignore>'
+          end, { expr = true })
+
+          map('n', '[c', function()
+            if vim.wo.diff then return '[c' end
+            vim.schedule(function() gs.prev_hunk() end)
+            return '<Ignore>'
+          end, { expr = true })
+        end,
+      })
+      require('scrollbar.handlers.gitsigns').setup()
+    end,
+  },
   -- Add git status to oil directory listings
   {
     'refractalize/oil-git-status.nvim',
@@ -304,7 +352,11 @@ require('lazy').setup({
                 path = 1 -- Show full filepath instead of just filename
               },
             },
-            lualine_x = {},
+            lualine_x = {
+              {
+                'diagnostics', sources = { 'nvim_lsp' }, symbols = { error = ' ', warn = ' ', info = ' ' },
+              },
+            },
             lualine_y = { 'filetype', 'progress' },
             lualine_z = {
               { 'location', separator = { right = '' }, left_padding = 2 },
@@ -433,41 +485,6 @@ require('lazy').setup({
   {
     'chentoast/marks.nvim',
     config = function() require('marks').setup() end,
-  },
-  -- Open lazygit from within neovim
-  {
-    'kdheepak/lazygit.nvim'
-  },
-  -- Git indicators in the sign column
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup({
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
-
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-
-          -- Navigation
-          map('n', ']c', function()
-            if vim.wo.diff then return ']c' end
-            vim.schedule(function() gs.next_hunk() end)
-            return '<Ignore>'
-          end, { expr = true })
-
-          map('n', '[c', function()
-            if vim.wo.diff then return '[c' end
-            vim.schedule(function() gs.prev_hunk() end)
-            return '<Ignore>'
-          end, { expr = true })
-        end,
-      })
-      require('scrollbar.handlers.gitsigns').setup()
-    end,
   },
   -- Pairs of handy bracket mappings
   {
@@ -627,7 +644,12 @@ local servers = {
   pyright = {},
   ruff_lsp = {},
   eslint = {},
-  tsserver = {},
+  ts_ls = {
+    -- NOTE: This isn't working, not sure I'm even doing it right
+    opts = {
+      inlay_hints = { enabled = true },
+    },
+  },
   graphql = {},
   ruby_lsp = {},
   rubocop = {},
@@ -677,7 +699,7 @@ mason_lspconfig.setup_handlers {
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
+lspconfig.ts_ls.setup {}
 lspconfig.ruff_lsp.setup {}
 lspconfig.ruby_lsp.setup {}
 
@@ -789,7 +811,7 @@ cmp.event:on(
 
 -- Set up lspconfig
 local lspConfigCapabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig')['tsserver'].setup {
+require('lspconfig')['ts_ls'].setup {
   capabilities = lspConfigCapabilities
 }
 
