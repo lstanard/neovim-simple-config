@@ -229,6 +229,7 @@ require('lazy').setup({
     'kburdett/vim-nuuid'
   },
   -- Show indentation guide lines
+  -- TODO: replace with https://github.com/nvimdev/indentmini.nvim
   {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
@@ -260,7 +261,8 @@ require('lazy').setup({
         scope = { highlight = highlight },
         indent = {
           -- Slightly thinner line than the default
-          char = '🭰',
+          -- NOTE: For some reason this character doesn't work with WezTerm / Nerd Font
+          -- char = '🭰',
         },
       }
 

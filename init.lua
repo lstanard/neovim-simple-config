@@ -20,7 +20,9 @@ require('plugins')
 
 -- Color scheme
 -- Additional configuration options https://github.com/catppuccin/nvim
-vim.cmd.colorscheme('catppuccin-frappe')
+-- vim.cmd.colorscheme('catppuccin-frappe')
+-- vim.cmd.colorscheme('catppuccin-mocha')
+vim.cmd.colorscheme('catppuccin-macchiato')
 
 -- General options
 vim.opt.cursorline = true     -- highlight current cursorline
@@ -173,6 +175,7 @@ map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
 map('n', '<leader>gf', '<cmd>:Telescope git_files<cr>')
 map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>')
 map('n', '<leader>fr', '<cmd>:Telescope resume<cr>')
+map('n', '<leader>fs', '<cmd>:Telescope grep_string<cr>')
 
 -- gitsigns
 map('n', '<leader>gs', '<cmd>:Gitsigns<cr>')
