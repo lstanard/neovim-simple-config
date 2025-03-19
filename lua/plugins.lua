@@ -331,6 +331,9 @@ require('lazy').setup({
       local lualine_style = {
         basic = {
           sections = {
+            lualine_a = {
+              { 'mode', fmt = function(res) return res:sub(1,1) end }
+            },
             lualine_c = {
               {
                 'filename',
@@ -346,7 +349,7 @@ require('lazy').setup({
             section_separators = { left = '', right = '' },
           },
           sections = {
-            lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
+            lualine_a = { { 'mode', fmt = function(res) return res:sub(1,1) end, separator = { left = '' }, right_padding = 2 } },
             lualine_b = { 'filename', 'branch' },
             lualine_c = {
               {
